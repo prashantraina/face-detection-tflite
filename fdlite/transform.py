@@ -63,7 +63,7 @@ def image_to_tensor(
     dst_points = [(0., 0.), (width, 0.), (width, height), (0., height)]
     coeffs = _perspective_transform_coeff(src_points, dst_points)
     roi_image = img.transform(size=(width, height), method=Image.PERSPECTIVE,
-                              data=coeffs, resample=Image.LINEAR)
+                              data=coeffs, resample=Image.BILINEAR)
     # free some memory - we don't need the temporary image anymore
     if img != image:
         img.close()
